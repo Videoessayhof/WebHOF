@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sheet Data Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <h1>My Sheet Data</h1>
+    <div id="data-container"></div>
+    
+    <script>
+        fetch('your-data-file.csv')
+            .then(response => response.text())
+            .then(text => {
+                Papa.parse(text, {
+                    header: true,
+                    complete: function(results) {
+                        let html = '<table border="1">';
+                        // Add headers
+                        html += '<tr>';
+                        for (let header in results.data[0]) {
+                            html += `<th>${header}</th>`;
+                        }
+                        html += '</tr>';
+                        // Add data rows
+                        results.data.forEach(row => {
+                            html += '<tr>';
+                            for (let value in row) {
+                                html += `<td>${row[value]}</td>`;
+                            }
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+                        document.getElementById('data-container').innerHTML = html;
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
