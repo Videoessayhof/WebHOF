@@ -11,11 +11,11 @@
 <body>
     <header class="bg-primary text-white p-3">
         <div class="container">
-            <h1>Video & Tabletop Games Archive</h1>
+            <h1><i class="fas fa-gamepad me-2"></i>Video & Tabletop Games Archive</h1>
             <p class="lead">Video Game Reviews & Development | Speedruns | Table Top, Card & War Games</p>
             <div class="stats">
-                <span class="badge bg-secondary">Total Video Count: 1488</span>
-                <span class="badge bg-secondary">2327:49:46 Across 300 Channels</span>
+                <span class="badge bg-secondary me-2"><i class="fas fa-video me-1"></i> Total Videos: <span id="totalVideos">0</span></span>
+                <span class="badge bg-secondary"><i class="fas fa-clock me-1"></i> Total Runtime: <span id="totalRuntime">0:00:00</span></span>
             </div>
         </div>
     </header>
@@ -23,54 +23,75 @@
     <main class="container mt-4">
         <div class="row">
             <div class="col-md-3">
-                <!-- Filters sidebar -->
                 <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>Filters</h5>
+                    <div class="card-header bg-primary text-white">
+                        <h5><i class="fas fa-filter me-1"></i>Filters</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="yearFilter" class="form-label">Year</label>
                             <select id="yearFilter" class="form-select" multiple>
-                                <option value="2025">2025</option>
-                                <option value="2024">2024</option>
-                                <!-- Add all years -->
+                                <option value="">Loading years...</option>
                             </select>
                         </div>
-                        <!-- Add other filters -->
+                        <div class="mb-3">
+                            <label for="formatFilter" class="form-label">Format</label>
+                            <select id="formatFilter" class="form-select" multiple>
+                                <option value="">Loading formats...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="searchInput" class="form-label">Search</label>
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search titles...">
+                        </div>
+                        <button id="resetFilters" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-undo me-1"></i>Reset Filters
+                        </button>
                     </div>
                 </div>
             </div>
             
             <div class="col-md-9">
-                <!-- Main table -->
-                <div class="table-responsive">
-                    <table id="gamesTable" class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>Year</th>
-                                <th>Rank</th>
-                                <th>Video Title</th>
-                                <th>Channel</th>
-                                <th>Tags</th>
-                                <th>Run Time</th>
-                                <th>Upload Date</th>
-                                <th>Summary</th>
-                                <th>Format</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Table rows will be populated by JavaScript -->
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="d-flex justify-content-between mt-3">
-                    <div class="btn-group">
-                        <button class="btn btn-outline-primary" id="prevPage"><i class="fas fa-chevron-left"></i></button>
-                        <button class="btn btn-outline-primary" id="nextPage"><i class="fas fa-chevron-right"></i></button>
+                <div class="card mb-3">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-table me-1"></i>Game Videos</h5>
                     </div>
-                    <span id="pageInfo">Page 1 of 10</span>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="gamesTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Year</th>
+                                        <th>Rank</th>
+                                        <th>Video Title</th>
+                                        <th>Channel</th>
+                                        <th>Tags</th>
+                                        <th>Run Time</th>
+                                        <th>Upload Date</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="8" class="text-center">Loading data...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between mt-3">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary" id="prevPage" disabled>
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="btn btn-outline-primary" id="nextPage" disabled>
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <span id="pageInfo" class="text-muted">Page 1 of 1</span>
+                            <span id="itemCount" class="text-muted">0 items</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
